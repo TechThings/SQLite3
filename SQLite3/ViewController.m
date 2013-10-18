@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SQLiteDatabase.h"
 
 @interface ViewController ()
 
@@ -18,6 +19,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    SQLiteDatabase *databaseTemp = [[SQLiteDatabase alloc] init];
+    NSArray *Result = [databaseTemp performQuery:@"Select * From tblPessoa"];
+    
+    NSLog(@"Resultado:");
+    NSLog(@"-------------------------");
+    NSLog(@"%@", Result);
+        
+    
+    UITextView *Texto = (UITextView *)[self.view viewWithTag:1];
+    Texto.text = [NSString stringWithFormat:@"%@",Result];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
